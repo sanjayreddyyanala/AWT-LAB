@@ -1,0 +1,18 @@
+const path = require('path');
+const filePath = '/Users/sanjay/Documents/project/index.js';
+console.log('File Path:', filePath);
+console.log('Basename:', path.basename(filePath));
+console.log('Dirname:', path.dirname(filePath));
+console.log('Extname:', path.extname(filePath));
+const parsedPath = path.parse(filePath);
+console.log('Parsed Path:', parsedPath);
+console.log('Formatted Path:', path.format(parsedPath));
+const joinedPath = path.join('/Users', 'sanjay', 'Documents', 'project', 'index.js');
+console.log('Joined Path:', joinedPath);
+const resolvedPath = path.resolve('Documents', 'project', 'index.js');
+console.log('Resolved Path:', resolvedPath);
+console.log('Is Absolute (relative path example):', path.isAbsolute('project/index.js'));
+console.log('Path Separator:', path.sep);
+console.log('Path Delimiter:', path.delimiter);
+console.log('Current Directory:', __dirname);
+console.log('Current File:', __filename);
