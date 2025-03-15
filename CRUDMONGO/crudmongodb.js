@@ -47,7 +47,7 @@ app.post("/student",(req,res)=> {
     newstd.save().then(()=>{
         res.send("data updated to db succesfully");
     }).catch(()=>{
-        res.send("")
+        res.send("error in adding to db");
     })
 })
 

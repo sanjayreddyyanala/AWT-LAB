@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button (click) = "onToggle()">Toggle</button>
+  <div>{{isVisible}}</div>
+  <div *ngIf = "isVisible == true">
+    <div style="width:100px;height:100px;background-color:green">
+
+    </div>
+  </div>
+  <br>
+  <br>
+  <h1>All Students</h1>
+  <table>
+    <tr>
+      <th>name</th>
+      <th>roll</th>
+      <th>branch</th>
+    </tr>
+    <tr *ngFor = "for let student of students">
+      <td>{{student.name}}</td>
+      <td>{{student.roll}}</td>
+      <td>{{student.branch}}</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+
+  <h1>Only IT Students</h1>
+  <table>
+    <tr>
+      <th>name</th>
+      <th>roll</th>
+      <th>branch</th>
+    </tr>
+    <div *ngFor = "for let student of students">
+      <tr *ngIf = "student.branch == 'IT'" style="width:100%">
+        <td>{{student.name}}</td>
+        <td>{{student.roll}}</td>
+        <td>{{student.branch}}</td>
+      </tr>
+    </div>
+  </table>
+  <app-child></app-child>
+</body>
+</html>
