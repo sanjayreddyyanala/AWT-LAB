@@ -1,0 +1,17 @@
+table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+tr,th {
+    margin-top: 5px;
+    padding: 1px 5px;
+}
+button {
+    margin-left: 5px;
+}
+
+.edit-form {
+    display: flex;
+    align-items: center;
+}

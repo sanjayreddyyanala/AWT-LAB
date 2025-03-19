@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student info</title>
+</head>
+<body>
+  <!-- add student -->
+  <input type="text" #id name="id" id="" placeholder="id" required>
+  <input type="text" #name name="name"  id="" placeholder="name" required>
+  <input type="text" #branch name="branch"  id="" placeholder="branch" required>
+  <span><button (click)="addStudent(id,name,branch)" class="btn btn-success btn-sm">Add student</button></span>
+
+  <table class="table">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Branch</th>
+    </tr>
+    <tr *ngFor = "let student of students">
+      <td>{{student.id}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.branch}}</td>
+      <button (click)="deleteStudent(student.id)" class="btn btn-danger btn-sm">delete</button><button (click)="editStudent(student.id)" class="btn btn-success btn-sm">edit</button>
+    </tr>
+  </table>
+
+  <div class="edit-form">
+    <input type="text" [(ngModel)]="editStudentDetails.id" name="id" placeholder="id" disabled>
+    <input type="text" [(ngModel)]="editStudentDetails.name" name="name" placeholder="name">
+    <input type="text" [(ngModel)]="editStudentDetails.branch" name="branch" placeholder="branch">
+    <span><button (click)="submitEdit()" class="btn btn-success btn-sm">Submit</button></span>
+  </div>
+</body>
+</html>
