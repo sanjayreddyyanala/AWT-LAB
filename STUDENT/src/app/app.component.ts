@@ -1,54 +1,42 @@
 import { Component } from '@angular/core';
-//import { RouterOutlet } from '@angular/router';
+import { StdServiceService } from './std-service.service';
 import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [NgFor,FormsModule],
+  imports: [NgFor, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-
 export class AppComponent {
-  
-  students = [
-    {
-      id : 1,
-      name  : "sanjay",
-      branch : "IT"
-    },
-    {
-      id : 2,
-      name  : "varshith",
-      branch : "IT"
-    },
-    {
-      id : 3,
-      name  : "sathvik",
-      branch : "CSE"
-    } 
-  ]
-  deleteStudent(id : any) {
-    console.log("delete");
-    this.students = this.students.filter((student) => student.id != id);
+  students: any[] = [];
+  editStudentDetails = { id: 0, name: '', branch: '' };
+
+  constructor(private StdServiceService: StdServiceService) {
+    this.students = this.StdServiceService.getStudents();
   }
 
-  editStudentDetails = {name : "",id : 0,branch : ""};
-  editStudent(id : any) {
-    console.log("edit");
-    let index = this.students.findIndex((student)=>student.id == id);
-    this.editStudentDetails = {...this.students[index]};
-    console.log(this.editStudentDetails);
+  deleteStudent(id: number) {
+    this.StdServiceService.deleteStudent(id);
+    this.students = this.StdServiceService.getStudents();
+  }
+
+  editStudent(id: number) {
+    let student = this.students.find(s => s.id === id);
+    if (student) {
+      this.editStudentDetails = { ...student };
+    }
   }
 
   submitEdit() {
-    let index = this.students.findIndex((student)=>student.id == this.editStudentDetails.id);
-    this.students[index] =  this.editStudentDetails;
-    this.editStudentDetails = {name : "",id : 0,branch : ""};
+    this.StdServiceService.editStudent(this.editStudentDetails.id, this.editStudentDetails);
+    this.students = this.StdServiceService.getStudents();
+    this.editStudentDetails = { id: 0, name: '', branch: '' };
   }
 
-  addStudent(id : any,name : any,branch : any) {
-    this.students.push({id : id.value,name : name.value, branch : branch.value});
+  addStudent(id: any, name: any, branch: any) {
+    this.StdServiceService.addStudent(+id.value, name.value, branch.value);
+    this.students = this.StdServiceService.getStudents();
   }
 }

@@ -17,14 +17,31 @@
       <th>Id</th>
       <th>Name</th>
       <th>Branch</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor = "let student of students">
       <td>{{student.id}}</td>
       <td>{{student.name}}</td>
       <td>{{student.branch}}</td>
-      <button (click)="deleteStudent(student.id)" class="btn btn-danger btn-sm">delete</button><button (click)="editStudent(student.id)" class="btn btn-success btn-sm">edit</button>
+      <button (click)="deleteStudent(student.id)" class="btn btn-danger btn-sm">delete</button>
+      <button (click)="editStudent(student.id)" class="btn btn-success btn-sm">edit</button>
     </tr>
   </table>
+
+  <!-- <div class="grid">
+    <div>Id</div>
+    <div>Name</div>
+    <div>Branch</div>
+    <div>Actions</div>
+  </div>
+
+  <div *ngFor = "let student of students">
+    <td>{{student.id}}</td>
+    <td>{{student.name}}</td>
+    <td>{{student.branch}}</td>
+    <button (click)="deleteStudent(student.id)" class="btn btn-danger btn-sm">delete</button>
+    <button (click)="editStudent(student.id)" class="btn btn-success btn-sm">edit</button>
+  </tr> -->
 
   <div class="edit-form">
     <input type="text" [(ngModel)]="editStudentDetails.id" name="id" placeholder="id" disabled>
